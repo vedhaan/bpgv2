@@ -1,0 +1,240 @@
+.contact {
+  position: relative;
+  padding: clamp(80px, 11vw, 160px) var(--gutter);
+  background: var(--espresso);
+  color: var(--ivory);
+  overflow-x: clip;
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -12%;
+  width: 56vw;
+  aspect-ratio: 1;
+  background: repeating-radial-gradient(circle, transparent 0 38px, rgb(213 165 30 / 0.1) 38px 39px);
+  -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrow::before { content: ''; width: 36px; height: 2px; background: var(--gold); }
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+.mark { color: var(--gold); }
+.lead {
+  max-width: 30rem;
+  margin-top: 22px;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* ---------- Ways to reach us ---------- */
+.methods { list-style: none; margin-top: clamp(28px, 4vw, 44px); border-top: 1px solid rgb(247 244 239 / 0.14); }
+.methods li { border-bottom: 1px solid rgb(247 244 239 / 0.14); }
+
+.method {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 8px;
+  isolation: isolate;
+  transition: padding 0.5s var(--ease);
+}
+.method::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s var(--ease);
+}
+.method:hover::before, .method:focus-visible::before { transform: scaleX(1); }
+.method:hover, .method:focus-visible { padding-left: 22px; color: var(--espresso); }
+.method:focus-visible { outline: 2px solid var(--ivory); outline-offset: -2px; }
+
+.badge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgb(247 244 239 / 0.35);
+  border-radius: 50%;
+  transition: border-color 0.3s;
+}
+.method:hover .badge { border-color: var(--espresso); }
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.methodText { flex: 1; display: grid; gap: 2px; min-width: 0; }
+.methodLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+.methodValue {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+.arrow { font-size: 1.4rem; transition: transform 0.4s var(--ease); }
+.method:hover .arrow { transform: translateX(6px); }
+
+/* ---------- Partner card ---------- */
+.partner {
+  margin-top: clamp(28px, 4vw, 44px);
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: 24px;
+  background: var(--gold);
+  color: var(--espresso);
+}
+.partner h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.partner p { margin-top: 10px; max-width: 26rem; line-height: 1.6; opacity: 0.85; }
+.enquire {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: var(--espresso);
+  color: var(--ivory);
+  font-weight: 700;
+  transition: transform 0.3s var(--ease), background 0.3s;
+}
+.enquire:hover { transform: translateY(-2px); background: var(--brown); }
+
+/* ---------- The form ---------- */
+.card {
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 32px;
+  background: var(--ivory);
+  color: var(--espresso);
+}
+.cardTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  letter-spacing: -0.03em;
+}
+
+.form { display: grid; gap: 18px; margin-top: 24px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+.field { position: relative; display: grid; gap: 8px; }
+.field span {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--stone);
+  border-radius: 14px;
+  background: #fff;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--espresso);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.field textarea { resize: vertical; min-height: 9rem; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--taupe); opacity: 0.8; }
+.field input:hover, .field textarea:hover { border-color: var(--taupe); }
+.field input:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--gold-muted);
+  box-shadow: 0 0 0 4px rgb(213 165 30 / 0.22);
+}
+.field input:user-invalid, .field textarea:user-invalid { border-color: #b4432b; }
+.count {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--taupe);
+  pointer-events: none;
+}
+
+.send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 17px 28px;
+  border-radius: 999px;
+  background: var(--espresso);
+  color: var(--ivory);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background 0.3s, color 0.3s, transform 0.3s var(--ease);
+}
+.send .icon { stroke: var(--gold); transition: stroke 0.3s; }
+.send:hover { background: var(--gold); color: var(--espresso); transform: translateY(-2px); }
+.send:hover .icon { stroke: var(--espresso); }
+.send:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.note { font-size: 0.88rem; line-height: 1.5; color: var(--brown); text-align: center; }
+
+@media (max-width: 960px) {
+  .inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .row { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .method, .method::before, .arrow, .enquire, .send { transition: none; }
+}

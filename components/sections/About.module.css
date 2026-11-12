@@ -1,0 +1,121 @@
+.about {
+  position: relative;
+  overflow: clip;
+  padding: clamp(96px, 13vw, 190px) var(--gutter);
+  background: var(--espresso);
+  color: var(--ivory);
+}
+
+/* Faint ripples, echoing the connections in the entrance */
+.about::before {
+  content: '';
+  position: absolute;
+  top: -22%;
+  right: -14%;
+  width: 62vw;
+  aspect-ratio: 1;
+  background: repeating-radial-gradient(
+    circle,
+    transparent 0 38px,
+    rgb(213 165 30 / 0.12) 38px 39px
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(32px, 6vw, 104px);
+  align-items: start;
+}
+
+/* Heading stays in view while the paragraph is read */
+.head { position: sticky; top: 140px; }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.6vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+.heading em { font-style: normal; color: var(--gold); }
+
+.text {
+  font-size: clamp(1.3rem, 2.3vw, 2rem);
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.vision {
+  position: relative;
+  margin-top: clamp(48px, 7vw, 88px);
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid rgb(247 244 239 / 0.14);
+  border-radius: 24px;
+  background: rgb(247 244 239 / 0.03);
+}
+.vision figcaption {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.vision blockquote {
+  margin-top: 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  line-height: 1.5;
+}
+.vision blockquote::before {
+  content: '\201C';
+  display: block;
+  height: 0.5em;
+  font-size: 4rem;
+  line-height: 0.9;
+  color: var(--gold);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+  padding-bottom: 4px;
+  font-weight: 600;
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+.link span { transition: transform 0.35s var(--ease); }
+.link:hover span { transform: translateX(6px); }
+
+@media (max-width: 900px) {
+  .inner { grid-template-columns: 1fr; }
+  .head { position: static; }
+}

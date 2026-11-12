@@ -1,0 +1,36 @@
+.marquee {
+  overflow: hidden;
+  background: var(--gold);
+  color: var(--espresso);
+  padding: clamp(16px, 2.4vw, 26px) 0;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: slide 40s linear infinite;
+}
+.marquee:hover .track { animation-play-state: paused; }
+
+.list { display: flex; flex-shrink: 0; }
+.list li {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+  padding-right: clamp(20px, 3vw, 36px);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 3vw, 2.3rem);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bean { height: 0.7em; width: auto; fill: var(--espresso); }
+.bean path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; }
+
+@keyframes slide { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+}
