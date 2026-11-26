@@ -60,6 +60,19 @@ const lookCurve = new THREE.CatmullRomCurve3(
   'catmullrom',
   0.5
 );
+// Portrait phones see a much narrower slice of the room, so inside the cafe the camera stands further back
+const portraitPoints = STATIONS.map((s, i) => {
+  const pos = new THREE.Vector3(...s.pos);
+  if (i === 0) return new THREE.Vector3(pos.x, pos.y, pos.z + 3);
+  if (i > 5) return pos;
+  const look = new THREE.Vector3(...s.look);
+  const p = look.clone().add(pos.sub(look).multiplyScalar(1.4));
+  p.y = Math.min(p.y, 5.3);
+  p.z = Math.min(p.z, 4.8);
+  p.x = THREE.MathUtils.clamp(p.x, -7, 7);
+  return p;
+});
+const posCurvePortrait = new THREE.CatmullRomCurve3(portraitPoints, false, 'catmullrom', 0.5);
 
 // The camera rests at each station for most of a step, then glides to the next one
 function stationU(p: number) {
@@ -80,10 +93,19 @@ function Rig({ progress, view }: { progress: Progress; view: Progress }) {
     camera.updateProjectionMatrix();
   }, [camera, size]);
 
+  useEffect(() => {
+    const portrait = size.width / size.height < 0.8;
+    camera.fov = portrait ? 78 : 50;
+    // Lifts the scene up the screen so the text panel at the bottom doesn't cover the action
+    if (portrait) camera.setViewOffset(size.width, size.height, 0, size.height * 0.1, size.width, size.height);
+    else camera.clearViewOffset();
+    camera.updateProjectionMatrix();
+  }, [camera, size]);
+
   useFrame((state, dt) => {
     view.current = THREE.MathUtils.damp(view.current, progress.current, 5, Math.min(dt, 0.1));
     const u = stationU(view.current);
-    posCurve.getPoint(u, pos);
+    (camera.aspect < 0.8 ? posCurvePortrait : posCurve).getPoint(u, pos);
     lookCurve.getPoint(u, look);
     const t = state.clock.elapsedTime;
     pos.x += Math.sin(t * 0.6) * 0.03;

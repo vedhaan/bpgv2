@@ -236,7 +236,20 @@
 
 @media (max-width: 960px) {
   .flagship { grid-template-columns: 1fr; }
-  .visual { order: -1; width: min(86%, 420px); }
+
+  .visual {
+    order: -1;
+    position: sticky;
+    top: 84px;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    margin: -8px 0 8px;
+    padding: 10px 0 16px;
+    background: linear-gradient(var(--espresso) 82%, transparent);
+  }
+  .table { width: min(56vw, 230px); }
 }
 
 @media (max-width: 720px) {

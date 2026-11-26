@@ -96,7 +96,7 @@ export default function HowItWorks() {
       const trigger = ScrollTrigger.create({
         trigger: stage,
         start: 'top top',
-        end: () => `+=${window.innerHeight * 8}`,
+        end: () => `+=${window.innerHeight * (window.innerWidth < 760 ? 6 : 8)}`,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
